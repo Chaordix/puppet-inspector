@@ -1,0 +1,4 @@
+# Params
+class inspector::params {
+
+}
