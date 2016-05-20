@@ -2,11 +2,12 @@
 class inspector::service inherits inspector {
   case $::operatingsystem {
     'Ubuntu': {
-      service { 'amazon-inspector-agent':
-        ensure  => 'running',
-        require => Class['inspector::install'],
+      service { 'awsagent':
+        ensure => running,
+        name => 'awsagent',
       }
     }
     default: { fail("The ${module_name} module is not supported on ${::osfamily}/${::operatingsystem}.") }
   }
 }
+

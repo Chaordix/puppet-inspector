@@ -3,14 +3,6 @@
 #
 # Download and install the AWS Inspector agent.
 #
-# Parameters
-# ----------
-#
-#
-# Variables
-# ----------
-#
-#
 # Authors
 # -------
 #
@@ -30,5 +22,4 @@ class inspector {
 
   include inspector::install
   include inspector::service
-  anchor { 'inspector::begin': } -> Class['inspector::install'] -> Class['inspector::service'] -> anchor { 'inspector::end': }
 }

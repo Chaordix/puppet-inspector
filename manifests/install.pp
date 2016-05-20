@@ -7,9 +7,13 @@ class inspector::install inherits inspector {
         path    => '/bin:/usr/bin:/usr/local/bin:/usr/sbin',
         creates => '/opt/inspector-install.sh',
       } ~>
+      file { '/opt/inspector-install.sh':
+        mode => '0755',
+      } ~>
       exec { 'install_inspector-agent':
-        command => 'bash /opt/inspector-install.sh',
-        path    => '/bin:/usr/bin:/usr/local/bin:/usr/sbin',
+        command => '/opt/inspector-install.sh',
+        path    => '/sbin:/bin:/usr/bin:/usr/local/bin:/usr/sbin',
+        refreshonly => true,
       }
     }
     default: { fail("The ${module_name} module is not supported on ${::osfamily}/${::operatingsystem}.") }
