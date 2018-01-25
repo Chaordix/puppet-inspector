@@ -22,4 +22,6 @@ class inspector {
 
   include inspector::install
   include inspector::service
+
+  Class['inspector::install'] -> Class['inspector::service']
 }
