@@ -4,7 +4,12 @@ class inspector::service inherits inspector {
     'Ubuntu': {
       service { 'awsagent':
         ensure => running,
-        name => 'awsagent',
+        name   => 'awsagent',
+      }
+    'CentOS': {
+      service { 'awsagent':
+        ensure => running,
+        name   => 'awsagent',
       }
     }
     default: { fail("The ${module_name} module is not supported on ${::osfamily}/${::operatingsystem}.") }
