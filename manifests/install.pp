@@ -25,17 +25,17 @@ class inspector::install inherits inspector {
       ~> file { '/opt/inspector-install.sh':
         mode => '0755',
       }
-      ~> file_line { 'update yum reinstall':
-        path    => '/opt/inspector-install.sh',
-        replace => true,
-        line    => '         yum reinstall -y --nogpgcheck "${package_path}"',
-        match   => '^\s*yum reinstall -y.*$',
-      }
       ~> file_line { 'update yum install':
         path    => '/opt/inspector-install.sh',
         replace => true,
         line    => '          yum install -y --nogpgcheck "${package_path}"',
         match   => '^\s*yum install -y.*$',
+      }
+      ~> file_line { 'update yum reinstall':
+        path    => '/opt/inspector-install.sh',
+        replace => true,
+        line    => '         yum reinstall -y --nogpgcheck "${package_path}"',
+        match   => '^\s*yum reinstall -y.*$',
       }
       ~> file_line { 'update yum downgrade':
         path    => '/opt/inspector-install.sh',
