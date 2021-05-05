@@ -17,6 +17,9 @@ class inspector::install inherits inspector {
       }
     }
     'CentOS': {
+      notify { 'what is happnening to this variable?':
+        message  => '         yum reinstall -y \"${package_path}\"'
+      }
       exec { 'download_inspector-agent':
         command => '/usr/bin/wget -N https://d1wk0tztpsntt1.cloudfront.net/linux/latest/install -O /opt/inspector-install.sh',
         path    => '/bin:/usr/bin:/usr/local/bin:/usr/sbin',
