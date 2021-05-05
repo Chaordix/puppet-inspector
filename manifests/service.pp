@@ -6,6 +6,7 @@ class inspector::service inherits inspector {
         ensure => running,
         name   => 'awsagent',
       }
+    }
     'CentOS': {
       service { 'awsagent':
         ensure => running,
