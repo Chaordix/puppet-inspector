@@ -26,7 +26,7 @@ Pull requests for other distributions welcome.
 
 ## Limitations
 
-Only tested with Ubuntu 14.04 (Trusty).
+tested with Ubuntu 14.04 (Trusty) and Centos 7.9. Should work on CentOS 7.3+
 
 Will not work with any other distros. Pull requests accepted.
 
