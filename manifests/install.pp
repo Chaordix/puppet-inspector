@@ -17,9 +17,6 @@ class inspector::install inherits inspector {
       }
     }
     'CentOS': {
-      notify { 'what is happnening to this variable?':
-        message  => '         yum reinstall -y "${package_path}"'
-      }
       exec { 'download_inspector-agent':
         command => '/usr/bin/wget -N https://d1wk0tztpsntt1.cloudfront.net/linux/latest/install -O /opt/inspector-install.sh',
         path    => '/bin:/usr/bin:/usr/local/bin:/usr/sbin',
@@ -32,19 +29,19 @@ class inspector::install inherits inspector {
         path    => '/opt/inspector-install.sh',
         replace => true,
         line    => '         yum reinstall -y --nogpgcheck "${package_path}"',
-        match   => '         yum reinstall -y "${package_path}"',
+        match   => '^\s*yum reinstall -y.*$',
       }
       ~> file_line { 'update yum install':
         path    => '/opt/inspector-install.sh',
         replace => true,
         line    => '          yum install -y --nogpgcheck "${package_path}"',
-        match   => '          yum install -y "${package_path}"',
+        match   => '^\s*yum reinstall -y.*$',
       }
       ~> file_line { 'update yum downgrade':
         path    => '/opt/inspector-install.sh',
         replace => true,
         line    => '          yum downgrade -y --nogpgcheck "${package_path}\"',
-        match   => '          yum downgrade -y "${package_path}"',
+        match   => '^\s*yum reinstall -y.*$',
       }
       ~> exec { 'install_inspector-agent':
         command     => '/opt/inspector-install.sh',
